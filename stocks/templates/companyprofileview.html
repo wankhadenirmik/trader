@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block title %}Profile
+{% endblock title %}
+{% block css %}
+{% endblock css %}
+{% block body %}
+{% load static  %}
+{% if user.is_authenticated %}  
+<div class="card-group">
+
+<div class="card" style="width: 18rem; margin: 10px">
+<div class="card-body">
+<h4 class="card-title"> Company Profile : </h4>
+<ul class="card-text">
+    <li>Company ID is: {{currentcompany.company_id}}</li>
+    <li>Username is: {{currentcompany.username}}</li>
+    <li>Company name  is: {{currentcompany.company_name}}</li>
+    <li>Company email: {{currentcompany.email}}</li>
+    <li>Company website: {{currentcompany.website}}</li>
+</ul>
+</div>
+
+<div class="card" style="width: 18rem; margin: 10px">
+    <div class="card-body">
+    <h4 class="card-title"> Company Profile : </h4>
+    <ul class="card-text">
+        <li>Company ID is: {{currentcompany.company_id}}</li>
+        <li>Price is: {{currentcompanyassest.price}}</li>        
+        <li>Company share: {{currentcompanyassest.total_shares}}</li>
+        <li>Company net worth: {{currentcompanyassest.net_worth}}</li>
+    </ul>
+</div>
+<button type="button" class="btn btn-success mr-2" data-toggle="modal" data-target="#addIPO">
+    Launch IPO
+</button> 
+<div class="modal fade" id="addIPO" tabindex="-1" role="dialog" aria-labelledby="addIPOLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addIPOLabel">IPO details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="/addIPO" method="post">
+            <div class="form-group">
+              <label for="price">Initial Public Offer(in Rs)</label>
+              <input type="text" class="form-control" id="price" name='price' placeholder="" Required>
+            </div>
+            <div class="form-group">
+              <label for="Quantity">Total Shares</label>
+              <input type="text" class="form-control" id="Quantity" name='Quantity' placeholder="" Required>
+            </div>
+            {% csrf_token %}
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Launch IPO</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endif %}
+{% endblock body %}

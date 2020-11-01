@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}Profile
+{% endblock title %}
+{% block css %}
+{% endblock css %}
+{% block body %}
+{% load static  %}
+{% if user.is_authenticated %}  
+
+
+
+<ul class="list-group list-group-flush">
+    <ul class="list-group list-group-horizontal-sm">
+        <li class="list-group-item col-sm-3"><h4>Company Name</h4></li>
+        <li class="list-group-item col-sm-3"><h4>Shares Quantity</h4></li>
+        <li class="list-group-item col-sm-3"><h4>Sell</h4></li>
+    </ul>
+    {% for i in demats %}
+    {% if i.c_id.username == user.get_username  %}
+    <ul class="list-group list-group-horizontal-sm">
+        <li class="list-group-item col-sm-3">{{i.company_id.company_name}}</li>
+        <li class="list-group-item col-sm-3">{{i.quantity}}</li>
+        <li class="list-group-item col-sm-3"><button type="button" class="btn btn-success mr-2" data-toggle="modal" data-target="#buy">
+            Sell
+    </button> </li>
+    <div class="modal fade" id="buy" tabindex="-1" role="dialog" aria-labelledby="sellLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="sellLabel">Sell</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form action="/handleselldemat" method="post">
+                <div class="form-group">
+                  <label for="quantity_sell">No of shares</label>
+                  <input type="text" class="form-control" id="quantity_sell" name='quantity_sell' placeholder="enter no of shares" Required>
+                </div>
+                <div class="form-group">
+                <input type = "hidden" name = "ipo" value = "{{i}}" />
+                </div>
+                {% csrf_token %}
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Proceed</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+    </ul>
+    {% endif %}
+    {% endfor %}
+</ul>
+
+   
+{% endif %}
+{% endblock body %}

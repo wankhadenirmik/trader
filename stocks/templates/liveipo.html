@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block title %}Profile
+{% endblock title %}
+{% block css %}
+{% endblock css %}
+{% block body %}
+{% load static  %}
+{% if user.is_authenticated %}  
+
+
+
+<ul class="list-group list-group-flush">
+    <ul class="list-group list-group-horizontal-sm">
+        <li class="list-group-item col-sm-3"><h4>Company Name</h4></li>
+        <li class="list-group-item col-sm-3"><h4>Price</h4></li>
+        <li class="list-group-item col-sm-3"><h4>Shares remaining</h4></li>
+        <li class="list-group-item col-sm-3"><h4>Buy</h4></li>
+    </ul>
+    {% for i in ipos %}
+    <ul class="list-group list-group-horizontal-sm">
+        <li class="list-group-item col-sm-3">{{i.company_id.company_name}}</li>
+        <li class="list-group-item col-sm-3">{{i.price}}</li>
+        <li class="list-group-item col-sm-3">{{i.remaining}}</li>
+        <li class="list-group-item col-sm-3"><button type="button" class="btn btn-success mr-2" data-toggle="modal" data-target="#"+str(i.company_id.company_name)>
+            Buy
+    </button> </li>
+    </ul>
+    {% endfor %}
+</ul>
+{% for i in ipos %}
+<div class="modal fade" id=str(i.company_id.company_name) tabindex="-1" role="dialog" aria-labelledby="buyLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="buyLabel">Buy</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="/handlebuy" method="post" name="form"+str(i.company_id.company_name)>
+            <div class="form-group">
+              <label for="share">No of shares</label>
+              <input type="text" class="form-control" id="share" name='share' placeholder="enter no of shares" Required>
+            </div>
+            <div class="form-group">
+            <input type = "hidden" name = "ipo" value = {{i}} />
+            </div>
+            {% csrf_token %}
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Proceed</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
+<!-- buy modal-->
+<!-- buy modal-->
+<!-- buy modal-->
+
+{% endif %}
+{% endblock body %}

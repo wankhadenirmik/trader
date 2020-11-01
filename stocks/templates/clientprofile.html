@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}Startups
+{% endblock title %}
+{% block css %}
+{% endblock css %}
+{% block body %}
+<div class="container">
+<form action="/clientprofile" method="post">
+  <div class="form-group">
+    <label for="fname">first name</label>
+    <input type="text" class="form-control" id="fname" name='fname' placeholder="first name" Required>
+  </div>
+  <div class="form-group">
+    <label for="lname">last name</label>
+    <input type="text" class="form-control" id="lname" name='lname' placeholder="last name" Required>
+  </div>
+  <div class="form-group">
+    <label for="contact"> Contact </label>
+    <input type="text" class="form-control" id="contact" name='contact' placeholder="75xxxxxx13" Required>
+  </div>
+  <div class="form-group">
+    <label for="age"> Age </label>
+    <input type="text" class="form-control" id="age" name='age' placeholder="age.13" Required>
+  </div>
+  <div class="form-group">
+    <label for="balance">Balance</label>
+    <input type="text" class="form-control" id="balance" name='balance' placeholder="4900rs" Required>
+  </div>
+  <div class="form-group">
+    <label for="password">password</label>
+    <input type="text" class="form-control" id="password" name='password' placeholder="your same account password" Required>
+  </div>
+  {% csrf_token %}
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button type="submit" class="btn btn-primary">Sign up</button>
+  </div>
+</form>
+</div>
+{% endblock body %}

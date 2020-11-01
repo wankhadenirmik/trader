@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}Startups
+{% endblock title %}
+{% block css %}
+{% endblock css %}
+{% block body %}
+<div class="container">
+<form action="/companyprofile" method="post">
+  <div class="form-group">
+    <label for="company_name">Company_name</label>
+    <input type="text" class="form-control" id="company_name" name='company_name' placeholder="company_name" Required>
+  </div>
+  <div class="form-group">
+    <label for="email">email</label>
+    <input type="text" class="form-control" id="email" name='email' placeholder="email" Required>
+  </div>
+  <div class="form-group">
+    <label for="website">website</label>
+    <input type="text" class="form-control" id="website" name='website' placeholder="www.com" Required>
+  </div>
+  <div class="form-group">
+    <label for="price"> price </label>
+    <input type="text" class="form-control" id="price" name='price' placeholder="price per share" Required>
+  </div>
+  <div class="form-group">
+    <label for="total_shares">total_shares</label>
+    <input type="text" class="form-control" id="total_shares" name='total_shares' placeholder="total no of shares" Required>
+  </div>
+  <div class="form-group">
+    <label for="net_worth"> net_worth</label>
+    <input type="text" class="form-control" id="net_worth" name='net_worth' placeholder="money u want to add to account" Required>
+  </div>
+  <div class="form-group">
+    <label for="password">password</label>
+    <input type="text" class="form-control" id="password" name='password' placeholder="ur same account password" Required>
+  </div>
+  {% csrf_token %}
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button type="submit" class="btn btn-primary">Sign up</button>
+  </div>
+</form>
+</div>
+{% endblock body %}

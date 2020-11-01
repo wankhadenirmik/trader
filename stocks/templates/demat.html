@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Profile
+{% endblock title %}
+{% block css %}
+{% endblock css %}
+{% block body %}
+{% load static  %}
+{% if user.is_authenticated %}  
+
+
+
+<ul class="list-group list-group-flush">
+    <ul class="list-group list-group-horizontal-sm">
+        <li class="list-group-item col-sm-3"><h4>Company Name</h4></li>
+        <li class="list-group-item col-sm-3"><h4>Price</h4></li>
+        <li class="list-group-item col-sm-3"><h4>Buy</h4></li>
+    </ul>
+    {% for i in demat %}
+    <ul class="list-group list-group-horizontal-sm">
+        <li class="list-group-item col-sm-3">{{i.company_id.company_name}}</li>
+        <li class="list-group-item col-sm-3">{{i.quantity}}</li>
+        <li class="list-group-item col-sm-3"><button type="button" class="btn btn-success mr-2" data-toggle="modal">
+            Sell
+    </button> </li>
+    </ul>
+    {% endfor %}
+</ul>
