@@ -6,13 +6,18 @@ Hosted on https://github.com/wankhadenirmik/trader
 Members
 
 Sanket Patil - 111803170
+
 Nirmik Wankhade - 111803163
+
 This is Database Management System Course Project
+
 
 Tech Stack Used:
 
 HTML/ CSS/ JS for Frontend
+
 Django framework used
+
 db.sqlite3 database
 
 Features
